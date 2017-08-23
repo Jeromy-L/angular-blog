@@ -1,0 +1,2 @@
+require('./background/');
+require('./sidebar');
