@@ -4,9 +4,12 @@ require('./background.less')
 
 app.directive('bgImg', function(){
 	return {
-		scope: {}, 
+		scope: {
+			bgImgs : '=bgImgs' 
+		}, 
 		controller: function($scope, $element, $attrs, $transclude) {
-            
+			//console.log($scope.bgImgs);
+			
         },
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
 		template: require('./background.html'),
