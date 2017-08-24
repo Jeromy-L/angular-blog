@@ -1,7 +1,16 @@
-<div class="sidebar">
-    <div class="sidebarWraper">
-        <img ng-src="{{about.imgSrc}}" class="sidebarImg" alt="">
-        <h3>{{about.name}}</h3>
-        <p>{{about.description}}</p>
-    </div> 
-</div>
+<section>
+    <div class="sidebar myself" ng-if="config.type === 'myself'">
+        <div class="sidebarWraper">
+            <img ng-src="{{data.imgSrc}}" class="sidebarImg" alt="">
+            <h3>{{data.name}}</h3>
+            <p>{{data.description}}</p>     
+        </div> 
+    </div>
+    <div class="sidebar sideNav" ng-if="config.type === 'sideNav'">
+        <h3>{{data.title}}</h3> 
+        <p>{{data.description}}</p>
+        <div class="sideNavLink">
+            <a ng-repeat="item in data.content" ng-href="{{item.url}}" class="sideNavLi">{{item.text}}</a>
+        </div>      
+    </div>
+</section>

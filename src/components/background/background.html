@@ -1,6 +1,6 @@
 <div class="bg">
     <ul>
         <li ng-repeat="(index,bgImg) in bgImgs" ng-style="{'background-image':'url(' + bgImg.src+')','animation':'imageAnimation '+{{6*bgImgs.length}}+'s linear infinite '+ index*bgImgs.length +'s'}"
-        ng-class="{'imgShow': bgImg.show}" class="bgImg" ></li>
+        class="bgImg" ></li>
     </ul>
 </div>
