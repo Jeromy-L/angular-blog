@@ -5,6 +5,6 @@
         <sidebar config="myself.config" data="myself.data"></sidebar>        
     </div>
     <div class="right">
-        <essay ng-repeat="item in articles" data="item"></essay> 
+        <essay ng-repeat="item in articles"  data="item" ng-if="articles.length !=0"></essay> 
     </div>
 </div>

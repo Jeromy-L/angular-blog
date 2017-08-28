@@ -1,4 +1,5 @@
-require("./index.less")
+require("./index.less");
+var http = require("http");
 module.exports = function(mod) {
     mod.controller('indexCtrl', function($scope) {
 			$scope.myself = {
@@ -10,7 +11,7 @@ module.exports = function(mod) {
 					"name"	: "Jeromy",
 					"description": "一个半吊子的前端攻城狮"
 				}
-			},
+			};
 			$scope.sideNav = {
 				"config" : {
 					"type" : "sideNav"
@@ -33,7 +34,7 @@ module.exports = function(mod) {
 					"title" : "Jeromy's Blog",
 					"description" : "年轻人没事少撸点码，多做点白日梦"
 				}
-			},
+			};
 			$scope.bgImgs = [
 				{
 					"src":"./img/1.jpg",
@@ -53,22 +54,30 @@ module.exports = function(mod) {
 				{
 					"src":"./img/6.jpg",
 				}
-			],
+			];
 			$scope.articles = [
-				{
-					"title":"北三彭于晏自传",
-					"category":"传记",
-					"date":"2017-08-26",
-					"content":"陈子么安徽覅大煞风景爱上了的积分好色韩国咦而撒地方撒大哥可能是打发红烧冬瓜"
-				},
-				{
-					"title":"北三彭于晏自传",
-					"category":"传记",
-					"date":"2017-08-26",
-					"content":"陈子么安徽覅大煞风景爱上了的积分好色韩国咦而撒地方撒大哥可能是打发红烧冬瓜"
-				}
+		
 				
-			]
-			console.log($scope.articles)
+			];
+			
+			var options={
+				hostname:"localhost",
+				port:3000
+			}
+			
+			var req=http.request(options,function(res){
+				res.setEncoding("utf-8");
+				res.on("data",function(chunk){
+					//console.log(chunk.toString())
+					$scope.$apply(function(){$scope.articles = JSON.parse(chunk).articles});
+					console.log($scope.articles);
+					
+				});
+			});
+			req.on("error",function(err){
+				console.log(err.message);
+			});
+			req.end();
+			
     })
 }
